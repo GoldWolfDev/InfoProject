@@ -1,0 +1,105 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>#{msg.adm_title}</title>
+        <h:outputStylesheet name="css/bootstrap.css"/>
+    </h:head>
+    <h:body>
+        <div class="row">      
+        <div class="col-md-7">
+        <div class="panel panel-primary">
+            <div class="panel-heading"><h3>#{msg.t_all_Users}</h3></div>
+            <div class="panel-body">
+            <f:view>
+                <h:form id="form1">
+                    <h:dataTable id="tb1" styleClass="table" value="#{mainAction.listUsers}" var="in">
+                        <h:column>
+                            <f:facet name="header">#{msg.t1_ID}</f:facet>
+                            <h:outputText value="#{in.id}" />
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">#{msg.t1_NameRole}</f:facet>
+                            <h:outputText value="#{in.nameRole}"/>
+                        </h:column> 
+                        <h:column>
+                            <f:facet name="header">#{msg.t1_Login}</f:facet>
+                            <h:outputText value="#{in.login}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">#{msg.t1_Passw}</f:facet>
+                            <h:outputText value="#{in.psw}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">#{msg.t1_FirstName}</f:facet>
+                            <h:outputText value="#{in.firstName}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">#{msg.t1_LastName}</f:facet>
+                            <h:outputText value="#{in.lastName}"/>
+                        </h:column>     
+                        <h:column>
+                            <f:facet name="header">#{msg.t1_LevelRole}</f:facet>
+                            <h:outputText value="#{in.levelRole}"/>
+                        </h:column>                         
+                    </h:dataTable>
+                </h:form>
+            </f:view>
+            </div>            
+        </div>
+        </div> 
+        <div class="col-md-5">
+        <div class="panel panel-success">
+            
+            <div class="panel-heading"><h3>#{msg.t_Window_update}</h3></div>
+            <div class="panel-body">
+            <h:form>
+                <div class="form-group row">
+                    <label for="inputEmail3" class="col-sm-2 col-form-label">#{msg.t1_Login}</label>
+                <div class="col-sm-10">
+                    <h:inputText styleClass="form-control"  value="#{mainAction.login}"></h:inputText><p></p>
+                </div>
+                    <label for="inputEmail3" class="col-sm-2 col-form-label">#{msg.t1_Passw}</label>
+                <div class="col-sm-10">
+                    <h:inputText styleClass="form-control"  value="#{mainAction.passw}"></h:inputText><p></p>
+                </div>
+                    <label for="inputEmail3" class="col-sm-2 col-form-label">#{msg.t1_FirstName}</label>
+                <div class="col-sm-10">
+                    <h:inputText styleClass="form-control"  value="#{mainAction.firstName}"></h:inputText><p></p>
+                </div>                    
+                    <label for="inputEmail3" class="col-sm-2 col-form-label">#{msg.t1_LastName}</label>
+                <div class="col-sm-10">
+                    <h:inputText styleClass="form-control"  value="#{mainAction.lastName}"></h:inputText><p></p>
+                </div>  
+                    <label for="inputEmail3" class="col-sm-2 col-form-label">#{msg.t1_NameRole}</label>
+                <div class="col-sm-10">
+                    <h:selectOneMenu styleClass="form-control" value="#{mainAction.idRole}" title="Role">
+                        <f:selectItem itemValue="1" itemLabel="Administrator" />
+                        <f:selectItem itemValue="2" itemLabel="Users" />
+                        <f:selectItem itemValue="3" itemLabel="Android" />
+                    </h:selectOneMenu><p></p>
+                </div>
+                    <label for="inputEmail3" class="col-sm-2 col-form-label">#{msg.t1_DeleteOrUpdateFunc}</label>
+                <div class="col-sm-10">
+                    <h:inputText  id="form7" styleClass="form-control"  value="#{mainAction.idUser}"></h:inputText><p></p>
+                </div>
+                </div>
+                <h:commandButton action="#{mainAction.saveUser()}" value="#{msg.t_add}">
+                    <f:ajax execute="@form" render=":form1" />
+                </h:commandButton>
+                <h:commandButton action="#{mainAction.update()}" value="#{msg.t_update}">
+                    <f:ajax execute="@form" render=":form1" />
+                </h:commandButton>
+                <h:commandButton action="#{mainAction.deleteUser()}" value="#{msg.t_delete}">
+                    <f:ajax execute="@form" render=":form1" />
+                </h:commandButton>
+            </h:form>
+            </div>
+            </div>
+        </div>
+        </div>
+    </h:body>
+</html>
+

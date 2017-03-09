@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <h:head>
+        <h:outputStylesheet name="/css/bootstrap.css"/>
+        <title>Консоль user</title>
+    </h:head>
+    <h:body>
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <div class="row">
+                    <div class="btn-group col-md-10">
+                        <h:form>
+                            <h:commandButton styleClass="btn btn-default" value="События" action="tUserEvent.xhtml"/>
+                            <h:commandButton styleClass="btn btn-default" value="Место" action="tUserLocation.xhtml"/>
+                            <h:commandButton styleClass="btn btn-default" value="Скидки-Акции" action="tUserSells.xhtml" />
+                            <h:commandButton styleClass="btn btn-default" value="Справочник категорий" action="tUserCategory.xhtml" />     
+                        </h:form>                                                 
+                    </div>     
+                    <div class="col-md-1">
+                        <h:form>
+                            <h:outputText styleClass="right" value="Пользователь:"/> 
+                            <h:commandLink action="goBackAuth" styleClass="text-warning" value="#{action.gettLogin()}"></h:commandLink>
+                        </h:form>
+                    </div>                    
+                </div>
+            </div>
+        </div>
+        <ui:insert name="tBodyAfterHead"/> 
+    </h:body>
+</html>
+

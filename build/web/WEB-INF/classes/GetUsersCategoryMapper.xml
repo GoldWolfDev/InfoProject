@@ -1,0 +1,54 @@
+<!DOCTYPE mapper     PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="GetUsersCategoryMapper">
+    <resultMap id="getCategory" type="Category">
+        <result property="id" column="idTGroup"/>
+        <result property="name" column="GroupName"/>
+    </resultMap>
+    
+    <select id="getCategoryList" resultMap="getCategory">
+        SELECT idTGroup, GroupName
+        FROM TGroup        
+    </select>   
+    
+    <update id ="updateOne" parameterType ="Category">
+        UPDATE TGroup
+        SET GroupName = #{name}
+        WHERE idTGroup=#{id};
+    </update>
+    
+    <delete id="deleteOne" parameterType="Category">
+        DELETE 
+        FROM TGroup 
+        WHERE idTGroup=#{id};
+    </delete> 
+    
+    <insert id = "insertOne" parameterType = "Category">
+        INSERT INTO TGroup (GroupName) 
+        VALUES (#{name});
+    </insert>
+    
+  <!--  
+    <update id ="updateOne" parameterType ="Users">
+        UPDATE SysUsers as user
+        SET user.login = #{login}, user.psw = #{psw}, user.firstName = #{firstName}, user.lastName = #{lastName}, user.idRole = #{idRole}         
+        WHERE user.id=#{id};
+    </update>
+    
+    <delete id="deleteOne" parameterType="int">
+        DELETE 
+        FROM SysUsers 
+        WHERE id=#{id};
+    </delete>    
+    
+    <insert id = "insertOne" parameterType = "Users">
+        INSERT INTO SysUsers (login, psw, firstName, lastName, idRole) 
+        VALUES (#{login}, #{psw}, #{firstName}, #{lastName}, #{idRole});
+    </insert>
+    
+    <select id="getList" resultMap="getUsers">
+        SELECT user.id, user.login, user.psw,user.firstName,user.lastName,role.nameRole,role.level 
+        FROM SysUsers as user, SysRole as role 
+        WHERE user.idRole=role.id;
+    </select> -->
+      
+</mapper>

@@ -1,0 +1,87 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<faces-config version="2.2"
+              xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+              xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-facesconfig_2_2.xsd">
+
+    <application>
+        <resource-bundle>
+            <base-name>com.inform.project.property.info</base-name>
+            <var>msg</var>
+        </resource-bundle>
+    </application>
+    
+    <navigation-rule>
+        <from-view-id>index.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>AdminConsole</from-outcome>
+            <to-view-id>pages/tAdminAuthorization.xhtml</to-view-id>
+            <redirect>
+                <redirect-param>true</redirect-param>
+            </redirect>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>UserConsole</from-outcome>
+            <to-view-id>pages/tUserAuthorization.xhtml</to-view-id>
+            <redirect>
+                <redirect-param>true</redirect-param>
+            </redirect>
+        </navigation-case>        
+    </navigation-rule>
+    
+    <navigation-rule>
+        <from-view-id>/pages/tUserAuthorization.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>goBackAuth</from-outcome>
+            <to-view-id>index.xhtml</to-view-id>
+            <redirect>
+                <redirect-param>true</redirect-param>
+            </redirect>
+        </navigation-case>
+    </navigation-rule>
+    
+    <navigation-rule>
+        <from-view-id>/pages/tUserCategory.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>goBackAuth</from-outcome>
+            <to-view-id>index.xhtml</to-view-id>
+            <redirect>
+                <redirect-param>true</redirect-param>
+            </redirect>
+        </navigation-case>
+    </navigation-rule>
+    
+    <navigation-rule>
+        <from-view-id>/pages/tUserEvent.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>goBackAuth</from-outcome>
+            <to-view-id>index.xhtml</to-view-id>
+            <redirect>
+                <redirect-param>true</redirect-param>
+            </redirect>
+        </navigation-case>
+    </navigation-rule>
+    
+    <navigation-rule>
+        <from-view-id>/pages/tUserLocation.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>goBackAuth</from-outcome>
+            <to-view-id>index.xhtml</to-view-id>
+            <redirect>
+                <redirect-param>true</redirect-param>
+            </redirect>
+        </navigation-case>
+    </navigation-rule>
+    
+    <navigation-rule>
+        <from-view-id>/pages/tUserSells.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>goBackAuth</from-outcome>
+            <to-view-id>index.xhtml</to-view-id>
+            <redirect>
+                <redirect-param>true</redirect-param>
+            </redirect>
+        </navigation-case>
+    </navigation-rule>
+    
+</faces-config>

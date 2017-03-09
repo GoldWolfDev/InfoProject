@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:ui ="http://xmlns.jcp.org/jsf/facelets">
+    <h:head>
+        <h:outputStylesheet name="css/bootstrap.css"/>
+        <title>Категории</title>
+    </h:head>
+    <h:body>
+        <ui:composition template="/templates/tTempHeader.xhtml">
+            <ui:define name="tBodyAfterHead">
+                <div class="row">      
+                <div class="col-md-7">
+                <div class="panel panel-primary">
+                    <div class="panel-heading"><h3>Катигории</h3></div>
+                    <div class="panel-body">
+                    <f:view>
+                        <h:form id="form1">
+                            <h:dataTable styleClass="table" value="#{userCategory.listCategory}" var="in">
+                                <h:column>
+                                    <f:facet name="header">#{msg.t2_idEvent}</f:facet>
+                                    <h:outputText value="#{in.id}"/>
+                                </h:column>
+                                <h:column>
+                                    <f:facet name="header">#{msg.t2_EventName}</f:facet>
+                                    <h:outputText value="#{in.name}"/>
+                                </h:column>                                
+                            </h:dataTable>
+                        </h:form>
+                    </f:view>
+                    </div>            
+                </div>
+                </div> 
+                <div class="col-md-5">
+                <div class="panel panel-success">
+
+                    <div class="panel-heading"><h3>Окно редактирования</h3></div>
+                    <div class="panel-body">
+                    <h:form>
+                        ID для редактирования или удаления<p></p>
+                        <h:inputText value="#{userCategory.idCategory}"/><p></p>
+                        Наименование<p></p>
+                        <h:inputText value="#{userCategory.name}"/><p></p>
+                        <h:commandButton  action="#{userCategory.setCategory()}" value="Добавить">
+                            <f:ajax execute="@form" render=":form1" />
+                        </h:commandButton>
+                        <h:commandButton  action="#{userCategory.updCategory()}" value="Изменить">
+                            <f:ajax execute="@form" render=":form1" />
+                        </h:commandButton>
+                        <h:commandButton  action="#{userCategory.delCategory()}" value="Удалить">
+                            <f:ajax execute="@form" render=":form1" />
+                        </h:commandButton>
+                    </h:form>
+                    </div>
+                    </div>
+                </div>
+                </div>  
+            </ui:define>
+        </ui:composition> 
+    </h:body>
+</html>
+

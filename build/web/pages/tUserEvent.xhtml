@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:ui ="http://xmlns.jcp.org/jsf/facelets">
+    <h:head>
+        <h:outputStylesheet name="css/bootstrap.css"/>
+        <title>События</title>
+    </h:head>
+    <h:body>
+        <ui:composition template="/templates/tTempHeader.xhtml">
+            <ui:define name="tBodyAfterHead">
+                <div class="row">      
+                <div class="col-md-7">
+                <div class="panel panel-primary">
+                    <div class="panel-heading"><h3>События</h3></div>
+                    <div class="panel-body">
+                    <f:view>
+                        <h:form>
+                            <h:dataTable styleClass="table" value="#{users.listUsers}" var="in">
+                                <h:column>
+                                    <f:facet name="header">#{msg.t2_idEvent}</f:facet>
+                                    <h:outputText value="#{in.idEvents}"/>
+                                </h:column>
+                                <h:column>
+                                    <f:facet name="header">#{msg.t2_EventName}</f:facet>
+                                    <h:outputText value="#{in.eventName}"/>
+                                </h:column>
+                                <h:column>
+                                    <f:facet name="header">#{msg.t2_Date}</f:facet>
+                                    <h:outputText value="#{in.eventDate}"/>
+                                </h:column>
+                                <h:column>
+                                    <f:facet name="header">#{msg.t2_Group}</f:facet>
+                                    <h:outputText value="#{in.eventGroup}"/>
+                                </h:column>
+                                <h:column>
+                                    <f:facet name="header">#{msg.t2_Sell}</f:facet>
+                                    <h:outputText value="#{in.eventSells}"/>
+                                </h:column>     
+                                <h:column>
+                                    <f:facet name="header">#{msg.t2_location}</f:facet>
+                                    <h:outputText value="#{in.eventLocation}"/>
+                                </h:column> 
+                                <h:column>
+                                    <f:facet name="header">#{msg.t2_Info}</f:facet>
+                                    <h:outputText value="#{in.eventInfo}"/>
+                                </h:column> 
+                                <h:column>
+                                    <f:facet name="header">#{msg.t2_image}</f:facet>
+                                    <h:outputText value="#{in.eventImage}"/>
+                                </h:column> 
+                            </h:dataTable>
+                        </h:form>
+                    </f:view>
+                    </div>            
+                </div>
+                </div> 
+                <div class="col-md-5">
+                <div class="panel panel-success">
+
+                    <div class="panel-heading"><h3>Окно редактирования</h3></div>
+                    <div class="panel-body">
+                    <h:form>
+                        Событие<p></p>
+                        <h:inputText> 1 </h:inputText><p></p>
+                        Информация о событии<p></p>
+                        <h:inputText> 1 </h:inputText><p></p>
+                        Дата и время события<p></p>
+                        <h:inputText> 1 </h:inputText><p></p>
+                        Группа<p></p>                        
+                        <h:selectOneMenu styleClass="form-control" value="Группа" title="Группа"> 
+                           <f:selectItems  value="#{userCategory.listCategory}" var="inGroup"
+                                itemLabel="#{inGroup.name}" itemValue="#{inGroup.id}"/>
+                        </h:selectOneMenu><p></p>
+                        Скидка<p></p>
+                        <h:selectOneMenu styleClass="form-control" value="Скидка" title="Скидка">                           
+                           <f:selectItems  value="#{userSells.listSells}" var="inSells"
+                                itemLabel="#{inSells.name}" itemValue="#{inSells.id}"/>
+                        </h:selectOneMenu><p></p>
+                        Место проведения<p></p>
+                        <h:selectOneMenu styleClass="form-control" value="Место" title="Место">
+                           <f:ajax render="@this"/>
+                           <f:selectItems value="#{userLocation.listLocation}" var="inLocation"
+                                itemLabel="#{inLocation.name}" itemValue="#{inLocation.id}"/>
+                        </h:selectOneMenu><p></p>                      
+                        <h:commandButton  action="#" value="Добавить"/>
+                        <h:commandButton  action="#" value="Изменить"/>
+                        <h:commandButton  action="#" value="Удалить"/>
+                    </h:form>
+                    </div>
+                    </div>
+                </div>
+                </div>  
+            </ui:define>
+        </ui:composition> 
+    </h:body>
+</html>
+

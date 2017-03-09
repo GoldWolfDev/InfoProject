@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+<!DOCTYPE configuration 
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN" 
+        "http://mybatis.org/dtd/mybatis-3-config.dtd"> 
+<configuration>    
+    <typeAliases>
+        <typeAlias alias="Users" type="com.inform.project.model.LoginAuthModel"/>
+        <typeAlias alias="Events" type="com.inform.project.model.UserEventModel"/>
+        <typeAlias alias="Sells" type="com.inform.project.model.UserSellsModel"/>
+        <typeAlias alias="Category" type="com.inform.project.model.UserCategoryModel"/>
+        <typeAlias alias="Location" type="com.inform.project.model.UserLocationModel"/>
+    </typeAliases>
+      <environments default="development">
+        <environment id="development">
+          <transactionManager type="JDBC"/>
+            <!--  connecting to Local MySql -->
+            <dataSource type="POOLED">
+                <property name="driver" value="com.mysql.jdbc.Driver"/>
+                <property name="url" value="jdbc:mysql://localhost:3306/info?useSSL=false"/>
+                <property name="username" value="root"/>
+                <property name="password" value="3231725"/>
+      
+            </dataSource>
+        </environment>
+    </environments>
+    <mappers>
+       <mapper resource="GetUsersMapper.xml"/> 
+       <mapper resource="GetEventsMapper.xml"/>
+       <mapper resource="GetUsersSellsMapper.xml"/>
+       <mapper resource="GetUsersCategoryMapper.xml"/>  
+       <mapper resource="GetUsersLocationMapper.xml"/>      
+    </mappers>
+</configuration>

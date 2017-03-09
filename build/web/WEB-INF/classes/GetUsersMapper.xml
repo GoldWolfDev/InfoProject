@@ -1,0 +1,43 @@
+<!DOCTYPE mapper     PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="GetUsersMapper">
+    <resultMap id="getUsers" type="Users">
+        <result property="id" column="ID"/>
+        <result property="login" column="Login"/>
+        <result property="psw" column="PSW"/>
+        <result property="firstName" column="FirstName"/>
+        <result property="lastName" column="LastName"/>
+        <result property="nameRole" column="NameRole"/>
+        <result property="levelRole" column="Level"/>
+        <result property="idRole" column="IDRole"/>
+    </resultMap>
+    
+    <select id="getUser" parameterType="Users" resultMap="getUsers">
+        SELECT user.id, user.login, user.psw,user.firstName,user.lastName,role.nameRole,role.level 
+        FROM SysUsers as user, SysRole as role 
+        WHERE login = #{login} and psw = #{psw} and user.idRole=role.id;
+    </select>   
+    
+    <update id ="updateOne" parameterType ="Users">
+        UPDATE SysUsers as user
+        SET user.login = #{login}, user.psw = #{psw}, user.firstName = #{firstName}, user.lastName = #{lastName}, user.idRole = #{idRole}         
+        WHERE user.id=#{id};
+    </update>
+    
+    <delete id="deleteOne" parameterType="int">
+        DELETE 
+        FROM SysUsers 
+        WHERE id=#{id};
+    </delete>    
+    
+    <insert id = "insertOne" parameterType = "Users">
+        INSERT INTO SysUsers (login, psw, firstName, lastName, idRole) 
+        VALUES (#{login}, #{psw}, #{firstName}, #{lastName}, #{idRole});
+    </insert>
+    
+    <select id="getList" resultMap="getUsers">
+        SELECT user.id, user.login, user.psw,user.firstName,user.lastName,role.nameRole,role.level 
+        FROM SysUsers as user, SysRole as role 
+        WHERE user.idRole=role.id;
+    </select> 
+      
+</mapper>

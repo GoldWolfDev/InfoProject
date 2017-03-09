@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:ui ="http://xmlns.jcp.org/jsf/facelets">
+    <h:head>
+        <h:outputStylesheet name="css/bootstrap.css"/>
+        <title>Скидки</title>
+    </h:head>
+    <h:body>
+        <ui:composition template="/templates/tTempHeader.xhtml">
+            <ui:define name="tBodyAfterHead">
+                <div class="row">      
+                <div class="col-md-7">
+                <div class="panel panel-primary">
+                    <div class="panel-heading"><h3>Скидки</h3></div>
+                    <div class="panel-body">
+                    <f:view>
+                        <h:form id="form1">
+                            <h:dataTable styleClass="table" value="#{userSells.listSells}" var="in">
+                                <h:column>
+                                    <f:facet name="header">#{msg.t2_idEvent}</f:facet>
+                                    <h:outputText value="#{in.id}"/>
+                                </h:column>
+                                <h:column>
+                                    <f:facet name="header">#{msg.t2_EventName}</f:facet>
+                                    <h:outputText value="#{in.name}"/>
+                                </h:column>
+                                <h:column>
+                                    <f:facet name="header">#{msg.t2_Date}</f:facet>
+                                    <h:outputText value="#{in.sell}"/>
+                                </h:column>                                
+                            </h:dataTable>
+                        </h:form>
+                    </f:view>
+                    </div>            
+                </div>
+                </div> 
+                <div class="col-md-5">
+                <div class="panel panel-success">
+
+                    <div class="panel-heading"><h3>Окно редактирования</h3></div>
+                    <div class="panel-body">
+                    <h:form>
+                        ID для редактирования или удаления<p></p>
+                        <h:inputText value="#{userSells.idSell}"/><p></p>
+                        Наименование скидки<p></p>
+                        <h:inputText value="#{userSells.nameSell}"/><p></p>
+                        Скидка<p></p>
+                        <h:inputText value="#{userSells.sell}"/><p></p>                       
+                        <h:commandButton  action="#{userSells.setSells()}" value="Добавить">
+                            <f:ajax execute="@form" render=":form1" />
+                        </h:commandButton>
+                        <h:commandButton  action="#{userSells.updSells()}" value="Изменить">
+                             <f:ajax execute="@form" render=":form1" />
+                        </h:commandButton>
+                        <h:commandButton  action="#{userSells.delSells()}" value="Удалить">
+                             <f:ajax execute="@form" render=":form1" />
+                        </h:commandButton>
+                    </h:form>
+                    </div>
+                    </div>
+                </div>
+                </div>  
+            </ui:define>
+        </ui:composition> 
+    </h:body>
+</html>
+
