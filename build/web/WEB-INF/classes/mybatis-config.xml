@@ -9,6 +9,7 @@
         <typeAlias alias="Sells" type="com.inform.project.model.UserSellsModel"/>
         <typeAlias alias="Category" type="com.inform.project.model.UserCategoryModel"/>
         <typeAlias alias="Location" type="com.inform.project.model.UserLocationModel"/>
+        <typeAlias alias="EventModel" type="com.inform.project.model.EventModel"/>
     </typeAliases>
       <environments default="development">
         <environment id="development">
@@ -28,6 +29,7 @@
        <mapper resource="GetEventsMapper.xml"/>
        <mapper resource="GetUsersSellsMapper.xml"/>
        <mapper resource="GetUsersCategoryMapper.xml"/>  
-       <mapper resource="GetUsersLocationMapper.xml"/>      
+       <mapper resource="GetUsersLocationMapper.xml"/> 
+       <mapper resource="GetEventsModelMapper.xml"/> 
     </mappers>
 </configuration>

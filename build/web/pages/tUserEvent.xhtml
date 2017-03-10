@@ -4,8 +4,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
-      xmlns:ui ="http://xmlns.jcp.org/jsf/facelets">
+      xmlns:ui ="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
     <h:head>
         <h:outputStylesheet name="css/bootstrap.css"/>
         <title>События</title>
@@ -19,7 +19,7 @@
                     <div class="panel-heading"><h3>События</h3></div>
                     <div class="panel-body">
                     <f:view>
-                        <h:form>
+                        <h:form id="form1">
                             <h:dataTable styleClass="table" value="#{users.listUsers}" var="in">
                                 <h:column>
                                     <f:facet name="header">#{msg.t2_idEvent}</f:facet>
@@ -65,31 +65,41 @@
                     <div class="panel-heading"><h3>Окно редактирования</h3></div>
                     <div class="panel-body">
                     <h:form>
+                        ID для редактирования или удаления<p></p>
+                        <h:inputText value="#{users.idEvents}"/><p></p> 
                         Событие<p></p>
-                        <h:inputText> 1 </h:inputText><p></p>
+                        <h:inputText value="#{users.eventName}"/><p></p>                       
                         Информация о событии<p></p>
-                        <h:inputText> 1 </h:inputText><p></p>
+                        <h:inputText value="#{users.eventInfo}"/><p></p>
                         Дата и время события<p></p>
-                        <h:inputText> 1 </h:inputText><p></p>
+                        <p:calendar value="#{users.eventDate}" pattern="dd/MM/yyyy HH:mm" showOn="button"/><p></p>
+                        Путь к изображению<p></p>
+                        <h:inputText value="#{users.eventImage}"/><p></p>
                         Группа<p></p>                        
-                        <h:selectOneMenu styleClass="form-control" value="Группа" title="Группа"> 
+                        <h:selectOneMenu styleClass="form-control" value="#{users.idGroup}" title="Группа"> 
                            <f:selectItems  value="#{userCategory.listCategory}" var="inGroup"
-                                itemLabel="#{inGroup.name}" itemValue="#{inGroup.id}"/>
+                                           itemLabel="#{inGroup.name}" itemValue="#{inGroup.id}"/>
                         </h:selectOneMenu><p></p>
                         Скидка<p></p>
-                        <h:selectOneMenu styleClass="form-control" value="Скидка" title="Скидка">                           
+                        <h:selectOneMenu styleClass="form-control" value="#{users.idSell}" title="Скидка">                           
                            <f:selectItems  value="#{userSells.listSells}" var="inSells"
                                 itemLabel="#{inSells.name}" itemValue="#{inSells.id}"/>
                         </h:selectOneMenu><p></p>
                         Место проведения<p></p>
-                        <h:selectOneMenu styleClass="form-control" value="Место" title="Место">
+                        <h:selectOneMenu styleClass="form-control" value="#{users.idLocation}" title="Место">
                            <f:ajax render="@this"/>
                            <f:selectItems value="#{userLocation.listLocation}" var="inLocation"
                                 itemLabel="#{inLocation.name}" itemValue="#{inLocation.id}"/>
                         </h:selectOneMenu><p></p>                      
-                        <h:commandButton  action="#" value="Добавить"/>
-                        <h:commandButton  action="#" value="Изменить"/>
-                        <h:commandButton  action="#" value="Удалить"/>
+                        <h:commandButton  action="#{users.setEvent()}" value="Добавить">
+                            <f:ajax execute="@form" render=":form1" />
+                        </h:commandButton>
+                        <h:commandButton  action="#{users.updEvent()}" value="Изменить">
+                            <f:ajax execute="@form" render=":form1" />
+                        </h:commandButton>
+                        <h:commandButton  action="#{users.delEvent()}" value="Удалить">
+                            <f:ajax execute="@form" render=":form1" />
+                        </h:commandButton>
                     </h:form>
                     </div>
                     </div>

@@ -11,6 +11,7 @@
         <result property="eventDate" column="DateEvents"/>
     </resultMap>
     
+    
     <select id="getEventsList" resultMap="getEvents">
         SELECT e.idTEvents, e.EventName, e.InfoEvent, e.ImageEvent, e.DateEvents, g.GroupName,l.LocationName, s.SellName
         FROM TEvents as e, TGroup as g, TLocation as l, TSells as s

@@ -6,6 +6,7 @@
 package com.inform.project.dao;
 
 import com.inform.project.dao.abstraction.GetEventsMapper;
+import com.inform.project.model.EventModel;
 import com.inform.project.model.UserEventModel;
 import com.inform.project.util.MyBatisSession;
 import java.io.IOException;
@@ -38,18 +39,51 @@ public class MyBatisGetEventsImpl implements GetEventsMapper{
     }
 
     @Override
-    public void addEvent(UserEventModel event) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void addEvent(EventModel event) { 
+        SqlSession session = null;
+        try {
+            session = MyBatisSession.getInst().getSession().openSession();
+            session.insert("GetEventsModelMapper.insertOne", event);
+            session.commit();
+        } catch (IOException ex) {
+            Logger.getLogger(MyBatisAdminImpl.class.getName()).log(Level.SEVERE, null, ex);
+        }finally{
+            if(session!=null){
+                session.close();
+            }
+        }      
     }
 
     @Override
-    public void saveEdit(UserEventModel event) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void saveEdit(EventModel event) {
+        SqlSession session = null;
+        try {
+            session = MyBatisSession.getInst().getSession().openSession();
+            session.update("GetEventsModelMapper.updateOne", event);
+            session.commit();
+        } catch (IOException ex) {
+            Logger.getLogger(MyBatisAdminImpl.class.getName()).log(Level.SEVERE, null, ex);
+        }finally{
+            if(session!=null){
+                session.close();
+            }
+        } 
     }
 
     @Override
-    public void deleteEvent(UserEventModel event) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void deleteEvent(EventModel event) {
+        SqlSession session = null;
+        try {
+            session = MyBatisSession.getInst().getSession().openSession();
+            session.delete("GetEventsModelMapper.deleteOne", event);
+            session.commit();
+        } catch (IOException ex) {
+            Logger.getLogger(MyBatisAdminImpl.class.getName()).log(Level.SEVERE, null, ex);
+        }finally{
+            if(session!=null){
+                session.close();
+            }
+        } 
     }
     
 }

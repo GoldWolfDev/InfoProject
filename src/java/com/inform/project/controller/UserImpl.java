@@ -13,8 +13,8 @@ import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import com.inform.project.controller.abstraction.User;
-import com.inform.project.controller.abstraction.UserCategory;
-import javax.faces.event.ValueChangeEvent;
+import com.inform.project.model.EventModel;
+import java.util.Date;
 
 /**
  *
@@ -33,8 +33,45 @@ public class UserImpl implements User, Serializable{
     private String eventInfo;
     private String eventGroup;
     private String eventImage;
-    private String eventDate;
-       
+    private Date eventDate; 
+    private int idGroup;
+    private int idSell;
+    private int idLocation;
+
+    public int getIdLocation() {
+        return idLocation;
+    }
+
+    public void setIdLocation(int idLocation) {
+        this.idLocation = idLocation;
+    }    
+
+    public Date getEventDate() {
+        return eventDate;
+    }
+
+    public void setEventDate(Date eventDate) {
+        this.eventDate = eventDate;
+    }
+        
+    public int getIdSell() {
+        return idSell;
+    }
+
+    public void setIdSell(int idSell) {
+        this.idSell = idSell;
+    }
+    
+    
+
+    public int getIdGroup() {
+        return idGroup;
+    }
+
+    public void setIdGroup(int idGroup) {
+        this.idGroup = idGroup;
+    }
+          
     @Override
     public List<UserEventModel> getListUsers() {
         GetEventsMapper map = new MyBatisGetEventsImpl();
@@ -98,26 +135,40 @@ public class UserImpl implements User, Serializable{
         this.eventImage = eventImage;
     }
 
-    public String getEventDate() {
-        return eventDate;
-    }
-
-    public void setEventDate(String eventDate) {
-        this.eventDate = eventDate;
-    }    
-
     @Override
-    public void setEvent(UserEventModel ev) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public void delEvent(UserEventModel ev) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void setEvent() {
+        EventModel event = new EventModel();
+        event.setDateEvents(eventDate);
+        event.setEventName(eventName);
+        event.setIdGroup(idGroup);
+        event.setIdLocation(idLocation);
+        event.setIdSells(idSell);
+        event.setImageEvent(eventImage);
+        event.setInfoEvent(eventInfo);
+        GetEventsMapper map = new MyBatisGetEventsImpl();
+        map.addEvent(event);
     }
 
     @Override
-    public void updEvent(UserEventModel ev) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void delEvent() {
+        EventModel event = new EventModel();
+        event.setIdTEvents(idEvents);        
+        GetEventsMapper map = new MyBatisGetEventsImpl();
+        map.deleteEvent(event);
+    }
+
+    @Override
+    public void updEvent() {
+        EventModel event = new EventModel();
+        event.setIdTEvents(idEvents);
+        event.setDateEvents(eventDate);
+        event.setEventName(eventName);
+        event.setIdGroup(idGroup);
+        event.setIdLocation(idLocation);
+        event.setIdSells(idSell);
+        event.setImageEvent(eventImage);
+        event.setInfoEvent(eventInfo);
+        GetEventsMapper map = new MyBatisGetEventsImpl();
+        map.saveEdit(event);
     }
 }

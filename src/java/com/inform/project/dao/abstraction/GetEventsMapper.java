@@ -5,6 +5,7 @@
  */
 package com.inform.project.dao.abstraction;
 
+import com.inform.project.model.EventModel;
 import com.inform.project.model.UserEventModel;
 import java.util.List;
 
@@ -16,9 +17,9 @@ public interface GetEventsMapper {
     
     public List<UserEventModel> getEvents();
     
-    public void addEvent(UserEventModel event);
+    public void addEvent(EventModel event);
     
-    public void saveEdit(UserEventModel event);
+    public void saveEdit(EventModel event);
     
-    public void deleteEvent(UserEventModel event);
+    public void deleteEvent(EventModel event);
 }

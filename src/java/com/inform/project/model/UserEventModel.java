@@ -5,6 +5,8 @@
  */
 package com.inform.project.model;
 
+import java.util.Date;
+
 /**
  *
  * @author root
@@ -18,16 +20,15 @@ public class UserEventModel {
     private String eventInfo;
     private String eventGroup;
     private String eventImage;
-    private String eventDate;
+    private Date eventDate;
 
-    public String getEventDate() {
+    public Date getEventDate() {
         return eventDate;
     }
 
-    public void setEventDate(String eventDate) {
+    public void setEventDate(Date eventDate) {
         this.eventDate = eventDate;
-    }
-    
+    }    
 
     public int getIdEvents() {
         return idEvents;

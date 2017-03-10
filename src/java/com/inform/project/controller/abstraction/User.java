@@ -16,9 +16,9 @@ public interface User {
     
     public List<UserEventModel> getListUsers();
     
-    public void setEvent(UserEventModel ev);
+    public void setEvent();
     
-    public void delEvent(UserEventModel ev);
+    public void delEvent();
     
-    public void updEvent(UserEventModel ev);
+    public void updEvent();
 }
