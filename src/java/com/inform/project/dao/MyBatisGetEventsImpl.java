@@ -85,5 +85,73 @@ public class MyBatisGetEventsImpl implements GetEventsMapper{
             }
         } 
     }
+
+    @Override
+    public List<UserEventModel> getEventForEventName(UserEventModel event) {
+        List<UserEventModel> list = null;
+        SqlSession session = null;
+        try {
+            session = MyBatisSession.getInst().getSession().openSession();
+            list = session.selectList("GetEventsMapper.getListForEventName", event);
+        } catch (IOException ex) {
+            Logger.getLogger(MyBatisGetEventsImpl.class.getName()).log(Level.SEVERE, null, ex);
+        }finally{
+            if(session!=null){
+                session.close();
+            }
+        }   
+        return list;
+    }
+
+    @Override
+    public List<UserEventModel> getEventForLocation(UserEventModel event) {
+        List<UserEventModel> list = null;
+        SqlSession session = null;
+        try {
+            session = MyBatisSession.getInst().getSession().openSession();
+            list = session.selectList("GetEventsMapper.getListForLocation", event);
+        } catch (IOException ex) {
+            Logger.getLogger(MyBatisGetEventsImpl.class.getName()).log(Level.SEVERE, null, ex);
+        }finally{
+            if(session!=null){
+                session.close();
+            }
+        }   
+        return list;
+    }
+
+    @Override
+    public List<UserEventModel> getEventForSells(UserEventModel event) {
+        List<UserEventModel> list = null;
+        SqlSession session = null;
+        try {
+            session = MyBatisSession.getInst().getSession().openSession();
+            list = session.selectList("GetEventsMapper.getListForSell", event);
+        } catch (IOException ex) {
+            Logger.getLogger(MyBatisGetEventsImpl.class.getName()).log(Level.SEVERE, null, ex);
+        }finally{
+            if(session!=null){
+                session.close();
+            }
+        }   
+        return list;
+    }
+
+    @Override
+    public List<UserEventModel> getEventForGroup(UserEventModel event) {
+        List<UserEventModel> list = null;
+        SqlSession session = null;
+        try {
+            session = MyBatisSession.getInst().getSession().openSession();
+            list = session.selectList("GetEventsMapper.getListForGroup", event);
+        } catch (IOException ex) {
+            Logger.getLogger(MyBatisGetEventsImpl.class.getName()).log(Level.SEVERE, null, ex);
+        }finally{
+            if(session!=null){
+                session.close();
+            }
+        }   
+        return list;
+    }
     
 }

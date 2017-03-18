@@ -11,6 +11,10 @@ import java.io.Serializable;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import com.inform.project.controller.abstraction.Login;
+import com.sun.faces.context.FacesContextImpl;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
+import org.primefaces.component.commandbutton.CommandButton;
 
 /**
  *
@@ -56,21 +60,26 @@ public class LoginImpl implements Login, Serializable{
     public String validLoginAndPassw() {
         MyBatisAdminImpl myBatis = new MyBatisAdminImpl();
         LoginAuthModel getUser = null;
+        String getURL = "";
         getUser = myBatis.getUser(tLogin, tPassw);
         if(getUser == null){
-            return "resources/error/loginFail";
+            addMessage("Не верный логин или пароль");
         }else{
             if(getUser.getLogin().equals(tLogin) & getUser.getPsw().equals(tPassw)){               
                 if(getUser.getLevelRole()>3){
-                   return "AdminConsole"; 
+                   getURL= "AdminConsole"; 
                 }else {
-                    return "UserConsole";
-                }              
-                                 
+                    getURL= "UserConsole";
+                }             
             }else{
-                return "resources/error/loginFail";
-            }               
+                addMessage("Не верный логин или пароль");
+            }
         }
-        
-    }    
+        return getURL;
+    }   
+    
+    private void addMessage(String detail) { 
+        FacesContext context = FacesContext.getCurrentInstance();         
+        context.addMessage(null, new FacesMessage("Your message: " + detail)); 
+    }
 }

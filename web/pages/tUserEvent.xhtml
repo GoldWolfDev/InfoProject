@@ -16,9 +16,10 @@
                 <div class="row">      
                 <div class="col-md-7">
                 <div class="panel panel-primary">
-                    <div class="panel-heading"><h3>События</h3></div>
+                    <div class="panel-heading"><h3>События</h3>                        
+                    </div>
                     <div class="panel-body">
-                    <f:view>
+                    <f:view  id="view1">
                         <h:form id="form1">
                             <h:dataTable styleClass="table" value="#{users.listUsers}" var="in">
                                 <h:column>
@@ -62,44 +63,49 @@
                 <div class="col-md-5">
                 <div class="panel panel-success">
 
-                    <div class="panel-heading"><h3>Окно редактирования</h3></div>
+                    <div class="panel-heading"><h3>Окно редактирования</h3>
+                        <h:form>
+                            <p:inputText size="30" value="#{users.searchEvent}"/> 
+                            <p:menuButton value="Поиск" style="margin-left: 5px">
+                                <p:menuitem value="Событие" action="#{users.eventNameGetList()}" update=":form1"/>
+                                <p:menuitem value="Группа" action="#{users.groupNameGetList()}" update=":form1"/>
+                                <p:menuitem value="Скидка" action="#{users.sellsNameGetList()}" update=":form1"/>
+                                <p:menuitem value="Место проведения" action="#{users.locationNameGetList()}" update=":form1"/>
+                            </p:menuButton> 
+                            <p:commandButton id="update1" action="#{users.setFirst()}" style="margin-left: 5px" value="Upd" update=":form1"/>
+                        </h:form>
+                    </div>
                     <div class="panel-body">
                     <h:form>
-                        ID для редактирования или удаления<p></p>
+                        #{msg.t1_DeleteOrUpdateFunc}<p></p>
                         <h:inputText value="#{users.idEvents}"/><p></p> 
-                        Событие<p></p>
+                        #{msg.t2_EventName}<p></p>
                         <h:inputText value="#{users.eventName}"/><p></p>                       
-                        Информация о событии<p></p>
+                        #{msg.t2_Info}<p></p>
                         <h:inputText value="#{users.eventInfo}"/><p></p>
-                        Дата и время события<p></p>
+                        #{msg.t2_Date}<p></p>
                         <p:calendar value="#{users.eventDate}" pattern="dd/MM/yyyy HH:mm" showOn="button"/><p></p>
-                        Путь к изображению<p></p>
+                        #{msg.t2_image}<p></p>
                         <h:inputText value="#{users.eventImage}"/><p></p>
-                        Группа<p></p>                        
-                        <h:selectOneMenu styleClass="form-control" value="#{users.idGroup}" title="Группа"> 
+                        #{msg.t2_Group}<p></p>                        
+                        <h:selectOneMenu styleClass="form-control" value="#{users.idGroup}" title="#{msg.t2_Group}"> 
                            <f:selectItems  value="#{userCategory.listCategory}" var="inGroup"
                                            itemLabel="#{inGroup.name}" itemValue="#{inGroup.id}"/>
                         </h:selectOneMenu><p></p>
-                        Скидка<p></p>
-                        <h:selectOneMenu styleClass="form-control" value="#{users.idSell}" title="Скидка">                           
+                        #{msg.t2_Sell}<p></p>
+                        <h:selectOneMenu styleClass="form-control" value="#{users.idSell}" title="#{msg.t2_Sell}">                           
                            <f:selectItems  value="#{userSells.listSells}" var="inSells"
                                 itemLabel="#{inSells.name}" itemValue="#{inSells.id}"/>
                         </h:selectOneMenu><p></p>
-                        Место проведения<p></p>
-                        <h:selectOneMenu styleClass="form-control" value="#{users.idLocation}" title="Место">
+                        #{msg.t2_location}<p></p>
+                        <h:selectOneMenu styleClass="form-control" value="#{users.idLocation}" title="#{msg.t2_location}">
                            <f:ajax render="@this"/>
                            <f:selectItems value="#{userLocation.listLocation}" var="inLocation"
                                 itemLabel="#{inLocation.name}" itemValue="#{inLocation.id}"/>
                         </h:selectOneMenu><p></p>                      
-                        <h:commandButton  action="#{users.setEvent()}" value="Добавить">
-                            <f:ajax execute="@form" render=":form1" />
-                        </h:commandButton>
-                        <h:commandButton  action="#{users.updEvent()}" value="Изменить">
-                            <f:ajax execute="@form" render=":form1" />
-                        </h:commandButton>
-                        <h:commandButton  action="#{users.delEvent()}" value="Удалить">
-                            <f:ajax execute="@form" render=":form1" />
-                        </h:commandButton>
+                        <p:commandButton  action="#{users.setEvent()}" value="#{msg.t_add}" update=":form1"/>
+                        <p:commandButton  action="#{users.updEvent()}" value="#{msg.t_update}" update=":form1"/>
+                        <p:commandButton  action="#{users.delEvent()}" value="#{msg.t_delete}" update=":form1"/>
                     </h:form>
                     </div>
                     </div>

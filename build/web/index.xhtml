@@ -2,17 +2,19 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
     <h:head>
         <h:outputStylesheet name="/css/bootstrap.css"/>
         <title>#{msg.action_title}</title>
     </h:head>
-    <h:body>    
+    <h:body>       
         <div class="panel panel-default">
             <div class="panel-heading"><h3>#{msg.act_form_auth}</h3></div>
                 <div class="panel-body">                    
                     <f:view>
                         <h:form title="#{msg.title_form}" id="mForm">
+                            <p:growl id="messages" showDetail="false"/>
                             <div class="form-group row">
                                 <label for="inputEmail3" class="col-sm-2 col-form-label">#{msg.tLogin}</label>
                                 <div class="col-sm-10">
@@ -26,7 +28,7 @@
                                 </div>
                             </div> 
                             <div>
-                                <h:commandButton styleClass="btn btn-primary" action="#{action.validLoginAndPassw}" value="#{msg.act_in}"/>  
+                                <p:commandButton styleClass="btn btn-primary" action="#{action.validLoginAndPassw}" value="#{msg.act_in}" update="messages"/>  
                             </div>     
                          </h:form>                         
                     </f:view>

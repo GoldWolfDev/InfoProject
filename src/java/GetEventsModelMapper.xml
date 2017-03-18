@@ -28,6 +28,8 @@
         FROM TEvents 
         WHERE idTEvents=#{idTEvents};
     </delete>
+    
+    
   <!--  
     <update id ="updateOne" parameterType ="Users">
         UPDATE SysUsers as user

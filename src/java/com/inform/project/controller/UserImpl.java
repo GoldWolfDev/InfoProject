@@ -37,7 +37,17 @@ public class UserImpl implements User, Serializable{
     private int idGroup;
     private int idSell;
     private int idLocation;
+    private String searchEvent;
+    private List<UserEventModel> model;
 
+    public String getSearchEvent() {
+        return searchEvent;
+    }
+
+    public void setSearchEvent(String searchEvent) {
+        this.searchEvent = searchEvent;
+    }    
+    
     public int getIdLocation() {
         return idLocation;
     }
@@ -71,11 +81,16 @@ public class UserImpl implements User, Serializable{
     public void setIdGroup(int idGroup) {
         this.idGroup = idGroup;
     }
+    
+    public void setFirst(){
+        GetEventsMapper map = new MyBatisGetEventsImpl();
+        model = map.getEvents();
+    }
           
     @Override
     public List<UserEventModel> getListUsers() {
-        GetEventsMapper map = new MyBatisGetEventsImpl();
-        return map.getEvents();
+        setFirst();
+        return model;
     }    
 
     
@@ -171,4 +186,37 @@ public class UserImpl implements User, Serializable{
         GetEventsMapper map = new MyBatisGetEventsImpl();
         map.saveEdit(event);
     }
+
+    public void eventNameGetList() {
+        GetEventsMapper map = new MyBatisGetEventsImpl();
+        UserEventModel event = new UserEventModel();
+        event.setEventName(parserSearch(searchEvent));
+        model = map.getEventForEventName(event);
+    }
+
+    public void locationNameGetList() {
+        GetEventsMapper map = new MyBatisGetEventsImpl();
+        UserEventModel event = new UserEventModel();
+        event.setEventLocation(parserSearch(searchEvent));
+        model = map.getEventForLocation(event);
+    }
+
+    public void sellsNameGetList() {
+        GetEventsMapper map = new MyBatisGetEventsImpl();        
+        UserEventModel event = new UserEventModel();
+        event.setEventSells(parserSearch(searchEvent));
+        model = map.getEventForSells(event);
+    }
+
+    public void groupNameGetList() {
+        GetEventsMapper map = new MyBatisGetEventsImpl();        
+        UserEventModel event = new UserEventModel();
+        event.setEventGroup(parserSearch(searchEvent));
+        model = map.getEventForGroup(event);
+    }
+
+    private String parserSearch(String search){
+        return "%"+search+"%";
+    }
+    
 }

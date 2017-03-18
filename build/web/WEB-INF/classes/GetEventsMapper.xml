@@ -16,7 +16,31 @@
         SELECT e.idTEvents, e.EventName, e.InfoEvent, e.ImageEvent, e.DateEvents, g.GroupName,l.LocationName, s.SellName
         FROM TEvents as e, TGroup as g, TLocation as l, TSells as s
         WHERE e.idGroup = g.idTGroup and e.idLocation = l.idTLocation and e.idSells = s.idTSells
-    </select>   
+    </select>  
+    
+    <select id="getListForEventName" parameterType ="Events" resultMap="getEvents" >
+        SELECT e.idTEvents, e.EventName, e.InfoEvent, e.ImageEvent, e.DateEvents, g.GroupName,l.LocationName, s.SellName
+        FROM TEvents as e, TGroup as g, TLocation as l, TSells as s
+        WHERE e.EventName like #{eventName} and e.idGroup = g.idTGroup and e.idLocation = l.idTLocation and e.idSells = s.idTSells
+    </select>  
+    
+    <select id="getListForLocation" parameterType ="Events" resultMap="getEvents" >
+        SELECT e.idTEvents, e.EventName, e.InfoEvent, e.ImageEvent, e.DateEvents, g.GroupName,l.LocationName, s.SellName
+        FROM TEvents as e, TGroup as g, TLocation as l, TSells as s
+        WHERE e.idGroup = g.idTGroup and e.idLocation = l.idTLocation and e.idSells = s.idTSells and l.LocationName like #{eventLocation}
+    </select> 
+    
+    <select id="getListForSell" parameterType ="Events" resultMap="getEvents">
+        SELECT e.idTEvents, e.EventName, e.InfoEvent, e.ImageEvent, e.DateEvents, g.GroupName,l.LocationName, s.SellName
+        FROM TEvents as e, TGroup as g, TLocation as l, TSells as s
+        WHERE e.idGroup = g.idTGroup and e.idLocation = l.idTLocation and e.idSells = s.idTSells and s.SellName like #{eventSells}
+    </select> 
+    
+    <select id="getListForGroup" parameterType ="Events" resultMap="getEvents">
+        SELECT e.idTEvents, e.EventName, e.InfoEvent, e.ImageEvent, e.DateEvents, g.GroupName,l.LocationName, s.SellName
+        FROM TEvents as e, TGroup as g, TLocation as l, TSells as s
+        WHERE e.idGroup = g.idTGroup and e.idLocation = l.idTLocation and e.idSells = s.idTSells and g.GroupName like #{eventGroup}
+    </select>    
   <!--  
     <update id ="updateOne" parameterType ="Users">
         UPDATE SysUsers as user

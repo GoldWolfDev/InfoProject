@@ -22,4 +22,12 @@ public interface GetEventsMapper {
     public void saveEdit(EventModel event);
     
     public void deleteEvent(EventModel event);
+    
+    public List<UserEventModel> getEventForEventName(UserEventModel event);
+    
+    public List<UserEventModel> getEventForLocation(UserEventModel event);
+    
+    public List<UserEventModel> getEventForSells(UserEventModel event);
+    
+    public List<UserEventModel> getEventForGroup(UserEventModel event);
 }

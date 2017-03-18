@@ -2,7 +2,8 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
     <h:head>
         <title>#{msg.adm_title}</title>
         <h:outputStylesheet name="css/bootstrap.css"/>
@@ -51,8 +52,7 @@
         </div>
         </div> 
         <div class="col-md-5">
-        <div class="panel panel-success">
-            
+        <div class="panel panel-success">            
             <div class="panel-heading"><h3>#{msg.t_Window_update}</h3></div>
             <div class="panel-body">
             <h:form>
@@ -86,15 +86,9 @@
                     <h:inputText  id="form7" styleClass="form-control"  value="#{mainAction.idUser}"></h:inputText><p></p>
                 </div>
                 </div>
-                <h:commandButton action="#{mainAction.saveUser()}" value="#{msg.t_add}">
-                    <f:ajax execute="@form" render=":form1" />
-                </h:commandButton>
-                <h:commandButton action="#{mainAction.update()}" value="#{msg.t_update}">
-                    <f:ajax execute="@form" render=":form1" />
-                </h:commandButton>
-                <h:commandButton action="#{mainAction.deleteUser()}" value="#{msg.t_delete}">
-                    <f:ajax execute="@form" render=":form1" />
-                </h:commandButton>
+                <p:commandButton action="#{mainAction.saveUser()}" value="#{msg.t_add}" update=":form1"/>
+                <p:commandButton action="#{mainAction.update()}" value="#{msg.t_update}" update=":form1"/>
+                <p:commandButton action="#{mainAction.deleteUser()}" value="#{msg.t_delete}" update=":form1"/>
             </h:form>
             </div>
             </div>

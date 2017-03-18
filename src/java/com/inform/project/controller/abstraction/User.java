@@ -21,4 +21,12 @@ public interface User {
     public void delEvent();
     
     public void updEvent();
+//    
+//    public List<UserEventModel> getEventForEventName();
+//    
+//    public List<UserEventModel> getEventForLocation();
+//    
+//    public List<UserEventModel> getEventForSells();
+//    
+//    public List<UserEventModel> getEventForGroup();
 }

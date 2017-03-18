@@ -5,7 +5,8 @@
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
-      xmlns:ui ="http://xmlns.jcp.org/jsf/facelets">
+      xmlns:ui ="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
     <h:head>
         <h:outputStylesheet name="css/bootstrap.css"/>
         <title>Категории</title>
@@ -22,11 +23,11 @@
                         <h:form id="form1">
                             <h:dataTable styleClass="table" value="#{userCategory.listCategory}" var="in">
                                 <h:column>
-                                    <f:facet name="header">#{msg.t2_idEvent}</f:facet>
+                                    <f:facet name="header">#{msg.t4_idGroup}</f:facet>
                                     <h:outputText value="#{in.id}"/>
                                 </h:column>
                                 <h:column>
-                                    <f:facet name="header">#{msg.t2_EventName}</f:facet>
+                                    <f:facet name="header">#{msg.t4_Group}</f:facet>
                                     <h:outputText value="#{in.name}"/>
                                 </h:column>                                
                             </h:dataTable>
@@ -41,19 +42,13 @@
                     <div class="panel-heading"><h3>Окно редактирования</h3></div>
                     <div class="panel-body">
                     <h:form>
-                        ID для редактирования или удаления<p></p>
+                        #{msg.t1_DeleteOrUpdateFunc}<p></p>
                         <h:inputText value="#{userCategory.idCategory}"/><p></p>
-                        Наименование<p></p>
+                        #{msg.t4_Group}<p></p>
                         <h:inputText value="#{userCategory.name}"/><p></p>
-                        <h:commandButton  action="#{userCategory.setCategory()}" value="Добавить">
-                            <f:ajax execute="@form" render=":form1" />
-                        </h:commandButton>
-                        <h:commandButton  action="#{userCategory.updCategory()}" value="Изменить">
-                            <f:ajax execute="@form" render=":form1" />
-                        </h:commandButton>
-                        <h:commandButton  action="#{userCategory.delCategory()}" value="Удалить">
-                            <f:ajax execute="@form" render=":form1" />
-                        </h:commandButton>
+                        <p:commandButton  action="#{userCategory.setCategory()}" value="#{msg.t_add}" update=":form1"/>
+                        <p:commandButton  action="#{userCategory.updCategory()}" value="#{msg.t_update}" update=":form1"/>
+                        <p:commandButton  action="#{userCategory.delCategory()}" value="#{msg.t_delete}"update=":form1"/>
                     </h:form>
                     </div>
                     </div>
